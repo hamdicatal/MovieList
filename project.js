@@ -6,6 +6,9 @@ const inputURL = document.querySelector("#url");
 // starting UI object
 const ui = new UI();
 
+// create storage object
+const storage = new Storage();
+
 // load all events
 eventListeners();
 
@@ -26,6 +29,10 @@ function addMovie(e){
         const newMovie = new Movie(title, director, url);
         // for adding movie to UI
         ui.addMovieToUI(newMovie);
+
+        // for adding to local storage
+        storage.addMovieToStorage(newMovie);
+
         ui.showAlert("Movie added successfully!", "success");
     }
 
