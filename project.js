@@ -20,13 +20,16 @@ function addMovie(e){
     const url = inputURL.value;
 
     if(title === "" || director === "" || url === ""){
-
+        ui.showAlert("Please fill in the required fields...", "danger");
     }
     else{
         const newMovie = new Movie(title, director, url);
         // for adding movie to UI
         ui.addMovieToUI(newMovie);
+        ui.showAlert("Movie added successfully!", "success");
     }
 
+    // for clear input values after adding
+    ui.clearInputs(inputTitle, inputDirector, inputURL);
     e.preventDefault();
 }
