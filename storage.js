@@ -6,7 +6,7 @@ function Storage(){
 Storage.prototype.addMovieToStorage = function(newMovie){
     let movies = this.getMoviesFromStorage();
     movies.push(newMovie);
-    localStorage.setItem(movies, JSON.stringify(movies));
+    localStorage.setItem("movies", JSON.stringify(movies));
 }
 
 // get movies from local storage

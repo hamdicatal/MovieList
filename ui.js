@@ -38,3 +38,17 @@ UI.prototype.showAlert = function(message, type){
         div.remove();
     }, 1500);
 }
+
+UI.prototype.loadMoviesToUI = function(movies){
+    const movieList = document.getElementById("movies");
+    movies.forEach(function(movie){
+        movieList.innerHTML += `
+        <tr>
+            <td><img src="${movie.url}" class="img-fluid img-thumbnail"></td>
+            <td>${movie.title}</td>
+            <td>${movie.director}</td>
+            <td><a href="#" id = "delete-film" class = "btn btn-danger">Delete</a></td>
+        </tr>
+    `;
+    });
+}
