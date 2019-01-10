@@ -53,7 +53,16 @@ UI.prototype.loadMoviesToUI = function(movies){
     });
 }
 
+// delete one movie from UI
 UI.prototype.deleteMovieFromUI = function(element){
     // a -> td -> tr (remove)
     element.parentElement.parentElement.remove();
+}
+
+// clear all movies from UI
+UI.prototype.clearAllMoviesFromUI = function(){
+    const movieList = document.getElementById("movies");
+    while(movieList.firstElementChild != null){
+        movieList.removeChild(movies.firstElementChild);
+    }
 }

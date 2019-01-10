@@ -3,6 +3,7 @@ const inputTitle = document.querySelector("#title");
 const inputDirector = document.querySelector("#director");
 const inputURL = document.querySelector("#url");
 const moviesList = document.querySelectorAll(".card-body")[1];
+const clearAll = document.querySelector("#clear-movies");
 
 // starting UI object
 const ui = new UI();
@@ -20,6 +21,7 @@ function eventListeners(){
         ui.loadMoviesToUI(movies);
     });
     moviesList.addEventListener("click", deleteMovie);
+    clearAll.addEventListener("click", clearAllMovies);
 }
 
 // for adding new movie
@@ -56,4 +58,13 @@ function deleteMovie(e){
 
         ui.showAlert("Movie successfully deleted from list!", "success");
     }
+}
+
+// clear all movies from list and local storage
+function clearAllMovies(){
+    if(confirm("Are you sure you want to clear all list?")){
+        ui.clearAllMoviesFromUI();
+        storage.clearAllMoviesFromStorage();
+        ui.showAlert("All movies successfully removed!", "success");
+    }   
 }
