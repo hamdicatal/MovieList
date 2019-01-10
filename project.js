@@ -5,20 +5,14 @@ const inputURL = document.querySelector("#url");
 const moviesList = document.querySelectorAll(".card-body")[1];
 const clearAll = document.querySelector("#clear-movies");
 
-// starting UI object
-const ui = new UI();
-
-// create storage object
-const storage = new Storage();
-
 // load all events
 eventListeners();
 
 function eventListeners(){
     addForm.addEventListener("submit", addMovie);
     document.addEventListener("DOMContentLoaded", function(){
-        let movies = storage.getMoviesFromStorage();
-        ui.loadMoviesToUI(movies);
+        let movies = Storage.getMoviesFromStorage();
+        UI.loadMoviesToUI(movies);
     });
     moviesList.addEventListener("click", deleteMovie);
     clearAll.addEventListener("click", clearAllMovies);
@@ -31,21 +25,21 @@ function addMovie(e){
     const url = inputURL.value;
 
     if(title === "" || director === "" || url === ""){
-        ui.showAlert("Please fill in the required fields...", "danger");
+        UI.showAlert("Please fill in the required fields...", "danger");
     }
     else{
         const newMovie = new Movie(title, director, url);
         // for adding movie to UI
-        ui.addMovieToUI(newMovie);
+        UI.addMovieToUI(newMovie);
 
         // for adding to local storage
-        storage.addMovieToStorage(newMovie);
+        Storage.addMovieToStorage(newMovie);
 
-        ui.showAlert("Movie added successfully!", "success");
+        UI.showAlert("Movie added successfully!", "success");
     }
 
     // for clear input values after adding
-    ui.clearInputs(inputTitle, inputDirector, inputURL);
+    UI.clearInputs(inputTitle, inputDirector, inputURL);
     e.preventDefault();
 }
 
@@ -53,18 +47,18 @@ function addMovie(e){
 function deleteMovie(e){
     if(e.target.id == "delete-movie"){
         let title = e.target.parentElement.previousElementSibling.previousElementSibling.textContent;
-        ui.deleteMovieFromUI(e.target);
-        storage.deleteMovieFromStorage(title);
+        UI.deleteMovieFromUI(e.target);
+        Storage.deleteMovieFromStorage(title);
 
-        ui.showAlert("Movie successfully deleted from list!", "success");
+        UI.showAlert("Movie successfully deleted from list!", "success");
     }
 }
 
 // clear all movies from list and local storage
 function clearAllMovies(){
     if(confirm("Are you sure you want to clear all list?")){
-        ui.clearAllMoviesFromUI();
-        storage.clearAllMoviesFromStorage();
-        ui.showAlert("All movies successfully removed!", "success");
+        UI.clearAllMoviesFromUI();
+        Storage.clearAllMoviesFromStorage();
+        UI.showAlert("All movies successfully removed!", "success");
     }   
 }
