@@ -2,6 +2,7 @@ const addForm = document.getElementById("movie-form");
 const inputTitle = document.querySelector("#title");
 const inputDirector = document.querySelector("#director");
 const inputURL = document.querySelector("#url");
+const moviesList = document.querySelectorAll(".card-body")[1];
 
 // starting UI object
 const ui = new UI();
@@ -18,6 +19,7 @@ function eventListeners(){
         let movies = storage.getMoviesFromStorage();
         ui.loadMoviesToUI(movies);
     });
+    moviesList.addEventListener("click", deleteMovie);
 }
 
 // for adding new movie
@@ -43,4 +45,10 @@ function addMovie(e){
     // for clear input values after adding
     ui.clearInputs(inputTitle, inputDirector, inputURL);
     e.preventDefault();
+}
+
+function deleteMovie(e){
+    if(e.target.id == "delete-movie"){
+        ui.deleteMovieFromUI(e.target);
+    }
 }

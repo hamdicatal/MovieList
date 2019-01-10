@@ -11,7 +11,7 @@ UI.prototype.addMovieToUI = function(newMovie){
             <td><img src="${newMovie.url}" class="img-fluid img-thumbnail"></td>
             <td>${newMovie.title}</td>
             <td>${newMovie.director}</td>
-            <td><a href="#" id = "delete-film" class = "btn btn-danger">Delete</a></td>
+            <td><a href="#" id = "delete-movie" class = "btn btn-danger">Delete</a></td>
         </tr>
     `;
 }
@@ -47,8 +47,13 @@ UI.prototype.loadMoviesToUI = function(movies){
             <td><img src="${movie.url}" class="img-fluid img-thumbnail"></td>
             <td>${movie.title}</td>
             <td>${movie.director}</td>
-            <td><a href="#" id = "delete-film" class = "btn btn-danger">Delete</a></td>
+            <td><a href="#" id = "delete-movie" class = "btn btn-danger">Delete</a></td>
         </tr>
     `;
     });
+}
+
+UI.prototype.deleteMovieFromUI = function(element){
+    // a -> td -> tr (remove)
+    element.parentElement.parentElement.remove();
 }
