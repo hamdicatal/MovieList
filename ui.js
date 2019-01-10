@@ -57,7 +57,7 @@ class UI{
     }
     
     // clear all movies from UI
-    static clearAllMoviesFromUI{
+    static clearAllMoviesFromUI(){
         const movieList = document.getElementById("movies");
         while(movieList.firstElementChild != null){
             movieList.removeChild(movies.firstElementChild);
